@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> | MightyMaaik</title>
+    <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }
+    nav { 
+        background: #333; 
+        padding: 10px 15px; 
+        margin-bottom: 20px;
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+    }
+
+    /* Company Name Styling */
+    .logo {
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    /* Menu Container Styling */
+    .menu-container ul { 
+        list-style: none; 
+        padding: 0; 
+        margin: 0; 
+        display: flex; 
+    }
+    
+    /* Menu Item Styling */
+    .menu-container ul li { 
+        position: relative; 
+    }
+    .menu-container ul li a { 
+        color: white; 
+        text-decoration: none; 
+        padding: 10px 15px; 
+        display: block; 
+    }
+    .menu-container ul li a:hover { 
+        background: #555; 
+    }
+
+    /* Dropdown Styles */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { 
+        display: none; 
+        position: absolute; 
+        background-color: #f9f9f9; 
+        min-width: 160px; 
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+        z-index: 10;
+        right: 0;
+    }
+    
+    /* FIX: Set font color to black for readability on light background */
+    .dropdown-content a { 
+        color: #333 !important; /* <-- Use !important to override other inherited rules */
+        background-color: transparent; /* Ensure no residual dark background */
+        padding: 12px 16px; 
+        text-decoration: none; 
+        display: block; 
+        text-align: left; 
+    }
+    .dropdown-content a:hover { 
+        background-color: #f1f1f1; 
+    }
+    .dropdown:hover .dropdown-content { 
+        display: block; 
+    }
+</style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">MightyMaaik</a>
+        
+        <div class="menu-container">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Projects</a>
+                    <div class="dropdown-content">
+                        <% projectFiles.forEach(file => { %>
+                            <a href="/project/<%= file.link %>"><%= file.name %></a>
+                        <% }); %>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <%- content %> 
+    </main>
+</body>
+</html>
